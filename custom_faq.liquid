@@ -1,0 +1,121 @@
+<div class="custom_faq_section">
+  <div class="row">
+    <div class="wrapper">
+   {% if section.settings.head != blank %}   <h2 class="heading">{{ section.settings.head }}</h2>{% endif %}
+   <div class="wrapper_faq">
+     {% for block in section.blocks %}
+       {% if  block.settings.title != blank %}
+<div class="main_faq" data-index="{{ forloop.index }}">
+  <div class="faq_main_title">
+  {% if block.settings.title != blank %}  <span class="">{{ block.settings.title }}</span>{% endif %}
+  <div class="icon_hd"><svg class="plus" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"></path></svg>
+  <svg class="minus" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" style="display:none;"><path d="M0 10h24v4h-24z"></path></svg>
+  </div>
+  </div>
+  {% if block.settings.text != blank %}<div class="content">{{ block.settings.text }}</div>{% endif %}
+</div>
+     {% endif %}
+     {% endfor %}
+   </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom_faq_section .faq_main_title span {
+    font-size: 19px;
+}
+
+.custom_faq_section .main_faq {
+    border-top: 1px solid;
+    padding: 10px 0px;
+  cursor:pointer;
+}
+
+.custom_faq_section .content {
+    font-size: 15px;
+    margin-top: 12px;
+}
+
+.custom_faq_section .faq_main_title {
+    display: flex;
+    justify-content: space-between;
+}
+  .custom_faq_section .wrapper {
+    width: 100%;
+
+}
+ .custom_faq_section .wrapper_faq {
+    width: 100%;
+    max-width: 878px;
+    margin: 0 auto;
+}
+.custom_faq_section .content {
+    display: none;
+}
+  .custom_faq_section .main_faq[data-index="3"] {
+    border-bottom: 1px solid #000;
+}
+  .custom_faq_section .icon_hd {
+    padding-right: 10px;
+}
+  .custom_faq_section h2.heading {
+    font-size: 36px;
+    margin: 0px 0px 25px;
+}
+  .custom_faq_section {
+    padding: 0px 0px 30px 0px;
+}
+
+
+  @media(max-width:768px){
+    .custom_faq_section h2.heading {
+    font-size: 26px;
+    margin: 0px 0px 10px;
+}
+.custom_faq_section .faq_main_title span {
+    font-size: 15px;
+}
+.custom_faq_section .content {
+    font-size: 13px;
+   
+}
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Custom Faq",
+    "settings": [
+      {
+        "type":"text",
+        "id":"head",
+        "label": "Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type":"Faq_block",
+        "name":"Faq Block",
+       "settings": [
+         {
+           "type": "text",
+           "id":"title",
+           "label": "Title"
+         },
+         {
+           "type":"text",
+           "id":"text",
+           "label":"Text"
+         }
+       ]
+      }
+    ],
+    "presets": [
+      {
+        "name":"Custom Faq"
+      }
+    ]
+  }
+{% endschema %}
