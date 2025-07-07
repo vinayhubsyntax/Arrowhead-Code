@@ -1,0 +1,16 @@
+  {%- when 'collapsible_tab2' -%}
+    {%- if block.settings.heading != blank -%}
+    <collapsible-row class="product__accordion accordion" {{ block.shopify_attributes }}>
+      <details id="Details-{{ block.id }}-{{ section.id }}"open>
+        <summary>
+          {{ block.settings.heading | default: block.settings.page.title }}
+          <span>{%- render 'svg-icons' with 'thb-collapsible-arrow' -%}</span>
+        </summary>
+        <div class="collapsible__content accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
+          {{ block.settings.content }}
+          {{ block.settings.page.content }}
+          {{ block.settings.custom_liquid }}
+        </div>
+      </details>
+    </collapsible-row>
+    {%- endif -%}
